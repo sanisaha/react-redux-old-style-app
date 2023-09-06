@@ -2,10 +2,12 @@ import React from "react";
 import { BiListPlus, BiX } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { actionTypes } from "../redux/actionTypes/actionTypes";
-import { add_to_cart } from "../redux/actionCreator/actionCreator";
+import { add_to_cart, remove_from_cart } from "../redux/actionCreator/actionCreator";
+import { useLocation } from "react-router-dom";
 
-const ProductCard = ({ product, button_prop }) => {
+const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
+    const { pathname } = useLocation();
     return (
         <div
             className='shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900'
@@ -24,7 +26,7 @@ const ProductCard = ({ product, button_prop }) => {
                 </ul>
             </div>
             <div className='flex gap-2 mt-5'>
-                {!button_prop && <>
+                {!pathname.includes('cart') && <>
                     <button
                         className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'
                         onClick={() => dispatch(add_to_cart(product))}
@@ -43,12 +45,17 @@ const ProductCard = ({ product, button_prop }) => {
                 }
 
                 {
-                    button_prop && <button
+                    pathname.includes('cart') && <button
                         title='Remove from wishlist'
                         className='bg-indigo-500  py-1 px-2 rounded-full'
-
+                        onClick={() => dispatch(remove_from_cart(product.id))}
                     >
-                        <BiX className='text-white' />
+                        <div className="flex justify-evenly items-center text-white p-4">
+                            <div>
+                                <p>Remove</p>
+                            </div>
+                            <div><BiX className='text-white' /></div>
+                        </div>
 
                     </button>
                 }

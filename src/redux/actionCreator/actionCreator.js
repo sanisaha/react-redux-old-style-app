@@ -6,3 +6,9 @@ export const add_to_cart = (data) => {
         payload: data
     }
 }
+export const remove_from_cart = (data) => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART,
+        payload: data
+    }
+}
