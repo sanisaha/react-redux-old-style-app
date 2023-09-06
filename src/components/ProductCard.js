@@ -16,6 +16,13 @@ const ProductCard = ({ product, button_prop }) => {
             </div>
             <h1 className='font-bold text-center'>{product.title}</h1>
             <p className='text-center font-semibold mb-3'>Rating: {product.rating.rate}</p>
+            <div className=' flex-1'>
+                <ul className='space-y-2'>
+                    {product.keyFeature.map((feature) => {
+                        return <li key={feature} className='text-sm '>{feature}</li>;
+                    })}
+                </ul>
+            </div>
             <div className='flex gap-2 mt-5'>
                 {!button_prop && <>
                     <button
