@@ -27,7 +27,7 @@ const ProductCard = ({ product, button_prop }) => {
                 {!button_prop && <>
                     <button
                         className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'
-                        onClick={() => dispatch(add_to_cart())}
+                        onClick={() => dispatch(add_to_cart(product))}
 
                     >
                         Add to cart
