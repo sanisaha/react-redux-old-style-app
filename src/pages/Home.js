@@ -11,9 +11,6 @@ const Home = () => {
             .then(data => setProducts(data))
     }, [])
 
-    const state = useSelector((state) => state);
-    console.log(state);
-
     return (
         <div>
             {products.map(product => <ProductCard

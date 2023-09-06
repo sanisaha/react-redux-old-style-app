@@ -10,9 +10,16 @@ const ProductCard = ({ product }) => {
     const { pathname } = useLocation();
     return (
         <div
-            className='shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900'
+            className='relative shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900'
             key={product.id}
         >
+            {
+                pathname.includes('cart') &&
+                <div className="grid place-items-center absolute right-2 top-2 bg-indigo-600 text-white h-8 w-8">
+                    <p>{product.quantity}</p>
+                </div>
+            }
+
             <div className='h-52 w-52 mx-auto'>
                 <img src={product.image} alt={product.title} />
             </div>
@@ -48,7 +55,7 @@ const ProductCard = ({ product }) => {
                     pathname.includes('cart') && <button
                         title='Remove from wishlist'
                         className='bg-indigo-500  py-1 px-2 rounded-full'
-                        onClick={() => dispatch(remove_from_cart(product.id))}
+                        onClick={() => dispatch(remove_from_cart(product))}
                     >
                         <div className="flex justify-evenly items-center text-white p-4">
                             <div>

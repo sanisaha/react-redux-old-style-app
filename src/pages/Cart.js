@@ -5,7 +5,7 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart)
     return (
         <div>
-            {cart.map(product => <ProductCard
+            {cart.sort((a, b) => a.id - b.id).map(product => <ProductCard
                 product={product}
             ></ProductCard>)}
         </div>
