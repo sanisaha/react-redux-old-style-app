@@ -1,7 +1,6 @@
 import React from "react";
 import { BiListPlus, BiX } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import { actionTypes } from "../redux/actionTypes/actionTypes";
 import { add_to_cart, remove_from_cart } from "../redux/actionCreator/actionCreator";
 import { useLocation } from "react-router-dom";
 

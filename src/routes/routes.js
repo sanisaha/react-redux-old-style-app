@@ -5,6 +5,9 @@ import TopRated from "../pages/TopRated";
 import Cart from "../pages/Cart";
 import About from "../pages/About";
 import WishList from "../pages/WishList";
+import Dashboard from "../layout/Dashboard/Dashboard";
+import ProductList from "../pages/Dashboard/ProductList";
+import AddProduct from "../pages/Dashboard/AddProduct";
 
 
 const routes = createBrowserRouter([
@@ -33,7 +36,21 @@ const routes = createBrowserRouter([
                 element: <WishList />
             }
         ]
-    }
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "/dashboard",
+                element: <ProductList />,
+            },
+            {
+                path: "add-product",
+                element: <AddProduct />,
+            },
+        ],
+    },
 ]);
 
 export default routes;

@@ -2,23 +2,22 @@ import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBrand, toggleStock } from '../redux/actionCreator/filterAction';
-import { render } from '@testing-library/react';
+import loadProducts from '../redux/thunk/products/fetchProducts';
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
-    const activeClass = "text-white  bg-indigo-500 border-white";
-    const dispatch = useDispatch();
+
+    const state = useSelector((state) => state);
     const filters = useSelector((state) => state.filter.filters);
+    const products = state.product.products;
     const { brands, stock } = filters;
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch('products.json')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+        dispatch(loadProducts())
+    }, [dispatch])
 
+    const activeClass = "text-white  bg-indigo-500 border-white";
     let content;
-
     if (products.length) {
         content = products.map((product) => (
             <ProductCard key={product.model} product={product} />

@@ -1,12 +1,23 @@
 import { actionTypes } from "../actionTypes/actionTypes";
 
 const initialState = {
-    cart: []
+    cart: [],
+    products: []
 };
 
 const productReducer = (state = initialState, action) => {
     const selectedProducts = state.cart.find(product => product.id === action.payload.id);
     switch (action.type) {
+        case actionTypes.LOAD_PRODUCT:
+            return {
+                ...state,
+                products: action.payload
+            }
+        case actionTypes.ADD_PRODUCT:
+            return {
+                ...state,
+                products: [...state.products, action.payload]
+            }
         case actionTypes.ADD_TO_CART:
             if (selectedProducts) {
                 const newCart = state.cart.filter(product => product.id !== selectedProducts.id)
